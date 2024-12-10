@@ -20,7 +20,6 @@ class ContactPage{
      this.submitBtn = page.locator('text=submit')
      this.succsessText = page.locator('div[role="alert"]')
 
-
       }
 }
 
