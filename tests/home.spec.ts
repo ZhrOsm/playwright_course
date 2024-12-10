@@ -6,11 +6,18 @@ import HomePage from "../pages/home.page";
 
 test.describe('Home', () => {
     let homePage: HomePage;
-    test ("Open HomePage and verify Title" , async({page})=>{
-        homePage = new HomePage(page)
 
-        //open URL
+
+    //beforeaech hook to open BASE-URL
+    test.beforeEach(async({page}) => {
+        homePage = new HomePage(page);
         await homePage.navigate()
+    })
+
+
+
+    test ("Open HomePage and verify Title" , async({page})=>{
+          
         //Verify Title
         await expect(page).toHaveTitle('Practice E-Commerce Site – SDET Unicorns');
        
@@ -18,9 +25,8 @@ test.describe('Home', () => {
     })
 
     test ("Open AboutPage and verify Title" , async({page})=>{
-        homePage = new HomePage(page)
-        //open URL
-        await page.goto('https://practice.sdetunicorns.com/about/');
+        
+        await homePage.aboutMenu.click()
         //Verify Title
         await expect(page).toHaveTitle('About – Practice E-Commerce Site');
        
@@ -28,18 +34,15 @@ test.describe('Home', () => {
     })
 
     test ("Click get startedbutton using CSS Selector" , async({page})=>{
-        homePage = new HomePage(page)
-        //open URL
-        await homePage.navigate()
-        //click to button
+        
+    
         //const getstartedButton = await page.locator('#get-started').click();
-
         await homePage.getstartedButton.click();
         
 
 
         //Verify URL
-        await expect(page).toHaveURL('https://practice.sdetunicorns.com/#get-started');
+        await expect(page).toHaveURL('/#get-started');
 
         //URL in bir kelimeyi icerip icermedigi
 
@@ -49,9 +52,6 @@ test.describe('Home', () => {
     })
 
     test ("Verify Heading Text ist visible using the text selector" , async({page})=>{
-        homePage = new HomePage(page)
-        //open URL
-        await homePage.navigate()
         //find the text locater
         //const headingText = page.locator('text=Think different. Make different.');
         //verify heading text is visible
@@ -61,9 +61,7 @@ test.describe('Home', () => {
     })
 
     test ("Verify home link is enabled using text an css selector" , async({page})=>{
-        homePage = new HomePage(page)
-        //open URL
-        await homePage.navigate()
+        
         //find the text locater
         //const homeText = page.locator('#zak-primary-menu >> text=Home');
         //Baska bir yol:
@@ -75,10 +73,7 @@ test.describe('Home', () => {
     })
 
     test ("Verify search icon is visible using xpath selector" , async({page})=>{
-        homePage = new HomePage(page)
-        //open URL
-        await homePage.navigate()
-        //find the  locater
+        
        
         // const searchIcon = page.locator("//div[@class='zak-header-actions zak-header-actions--desktop']//a[@class='zak-header-search__toggle']");
 
@@ -88,7 +83,7 @@ test.describe('Home', () => {
     })
 
     test ("Verify the Text of all nav links", async({page})=>{
-        homePage = new HomePage(page)
+        
         const expectedLinks = [
             "Home",
             "About",
@@ -112,7 +107,7 @@ test.describe('Home', () => {
 
     //nth() methode
     test ("Verify n. element with nth() methode", async({page})=>{
-        homePage = new HomePage(page)
+        
         const LinkNames = [
             "Home",
             "About",

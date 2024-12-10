@@ -12,7 +12,7 @@ test.describe('Cart', () =>{
             uploadComponent = new UploadComponent(page);
 
             //open url
-            await page.goto('https://practice.sdetunicorns.com/cart/');
+            await page.goto('/cart');
 
             //provide test file path
             const filePath =path.join(__dirname,'../data/Bild.png');
@@ -35,7 +35,7 @@ test.describe('Cart', () =>{
 
             cartPage = new CartPage(page);
             //open url
-            await page.goto('https://practice.sdetunicorns.com/cart/');
+            await page.goto('/cart');
 
             //provide test file path
             const filePath =path.join(__dirname,'../data/Bild.png');
@@ -65,7 +65,7 @@ test.describe('Cart', () =>{
             cartPage = new CartPage(page);
             uploadComponent = new UploadComponent(page);
             //open url
-            await page.goto('https://practice.sdetunicorns.com/cart');
+            await page.goto('/cart');
         
 
             //provide test file path
