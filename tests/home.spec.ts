@@ -7,7 +7,6 @@ import HomePage from "../pages/home.page";
 test.describe('Home', () => {
     let homePage: HomePage;
 
-
     //beforeaech hook to open BASE-URL
     test.beforeEach(async({page}) => {
         homePage = new HomePage(page);

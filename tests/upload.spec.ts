@@ -4,38 +4,56 @@ import UploadPage from '../pages/upload.page';
 import UploadComponent from '../Components/upload.component';
 
 
+
 test.describe('Upload', () =>{
         let uploadPage: UploadPage;
         let uploadComponent: UploadComponent;
-   
-        test ("should upload a test file" , async({page})=>{
-            uploadPage = new UploadPage(page);
 
+        const fileName = ['Bild.png','test.pdf']
+
+        test.beforeEach(async({page})=> {
+            uploadPage = new UploadPage(page);
             //open url
             await page.goto('/cart');
 
-            //provide test file path
-            const filePath =path.join(__dirname,'../data/Bild.png');
-
-
-            //upload test file
-
-            await page.setInputFiles('input#upfile_1',filePath)
-            //click the submit button
-            await uploadPage.uploadBtn.click();
-
-            //assertion
-
-            await expect(uploadPage.successText).toContainText('uploaded successfully')
-
 
         })
+        
+
+
+        for(const name of fileName){
+
+            test (`should upload a ${name} file` , async({page})=>{
+                
+                //provide test file path
+                const filePath =path.join(__dirname,`../data/${name}`);
+    
+    
+                //upload test file
+    
+                await page.setInputFiles('input#upfile_1',filePath)
+                //click the submit button
+                await uploadPage.uploadBtn.click();
+    
+                //assertion
+    
+                await expect(uploadPage.successText).toContainText('uploaded successfully')
+    
+    
+            })
+        }
+
+        
+        
+   
+    
 
         test ("should upload a test file with a hidden input" , async({page})=>{
 
             uploadPage = new UploadPage(page);
             //open url
             await page.goto('/cart');
+            
 
             //provide test file path
             const filePath =path.join(__dirname,'../data/Bild.png');
@@ -49,7 +67,7 @@ test.describe('Upload', () =>{
             })
 
             //upload test file
-            await page.setInputFiles('input#upfile_1',filePath)
+            await page.setInputFiles('input#upfile_1', filePath)
             //click the submit button
             await uploadPage.uploadBtn.click();
 
@@ -60,15 +78,15 @@ test.describe('Upload', () =>{
 
         })
 
-        test ("should upload a test file with wait" , async({page})=>{
+        test.skip ("should upload a test file with wait" , async({page})=>{
 
-            uploadComponent = new UploadComponent(page);
+            uploadPage = new UploadPage(page);
             //open url
             await page.goto('/cart');
+            uploadComponent = new UploadComponent(page);
 
             //provide test file path
             const filePath =path.join(__dirname,'../data/test.pdf');
-
 
             //upload test file
 
@@ -82,10 +100,11 @@ test.describe('Upload', () =>{
 
            //ASSERTION WAIT
             //assertion
-            await expect(page.locator('#wfu_messageblock_header_1_label_1')).toContainText('uploaded successfully',{timeout: 10000});
+            await expect(uploadPage.successText).toContainText('uploaded successfully',{timeout: 10000});
 
 
         })
+        
 
     
 

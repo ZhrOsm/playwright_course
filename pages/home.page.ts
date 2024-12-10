@@ -22,6 +22,10 @@ class HomePage{
     async navigate (){
         await this.page.goto('/');
     }
+
+    async getNavLinksText(){
+        return this.navLinks.allInnerTexts
+    }
 }
 
 export default HomePage;
