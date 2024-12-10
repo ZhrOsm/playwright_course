@@ -6,13 +6,13 @@ import UploadComponent from '../Components/upload.component';
 
 test.describe('Upload', () =>{
         let uploadPage: UploadPage;
-        let uploadComponent :UploadComponent;
+        let uploadComponent: UploadComponent;
    
         test ("should upload a test file" , async({page})=>{
             uploadPage = new UploadPage(page);
 
             //open url
-            await page.goto('https://practice.sdetunicorns.com/cart/');
+            await page.goto('/cart');
 
             //provide test file path
             const filePath =path.join(__dirname,'../data/Bild.png');
@@ -35,7 +35,7 @@ test.describe('Upload', () =>{
 
             uploadPage = new UploadPage(page);
             //open url
-            await page.goto('https://practice.sdetunicorns.com/cart/');
+            await page.goto('/cart');
 
             //provide test file path
             const filePath =path.join(__dirname,'../data/Bild.png');
@@ -64,7 +64,7 @@ test.describe('Upload', () =>{
 
             uploadComponent = new UploadComponent(page);
             //open url
-            await page.goto('https://practice.sdetunicorns.com/cart/');
+            await page.goto('/cart');
 
             //provide test file path
             const filePath =path.join(__dirname,'../data/test.pdf');

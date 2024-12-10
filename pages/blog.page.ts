@@ -7,7 +7,6 @@ class BlogPage{
         this.page = page;
         this.recentPostList =  page.locator('#recent-posts-3 ul li')
 
-
     }
 }
 

@@ -10,8 +10,6 @@ class UploadPage {
         this.uploadBtn = page.locator('#upload_1')
         this.successText = page.locator('#wfu_messageblock_header_1_label_1')
 
-
-
     }
 }
 
