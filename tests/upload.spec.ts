@@ -1,9 +1,12 @@
 import {test, expect} from '@playwright/test';
 const path =require(`path`)
 import UploadPage from '../pages/upload.page';
+import UploadComponent from '../Components/upload.component';
+
 
 test.describe('Upload', () =>{
         let uploadPage: UploadPage;
+        let uploadComponent :UploadComponent;
    
         test ("should upload a test file" , async({page})=>{
             uploadPage = new UploadPage(page);
@@ -59,6 +62,7 @@ test.describe('Upload', () =>{
 
         test ("should upload a test file with wait" , async({page})=>{
 
+            uploadComponent = new UploadComponent(page);
             //open url
             await page.goto('https://practice.sdetunicorns.com/cart/');
 
@@ -68,9 +72,7 @@ test.describe('Upload', () =>{
 
             //upload test file
 
-            await page.setInputFiles('input#upfile_1',filePath)
-            //click the submit button
-            await page.locator('#upload_1').click();
+            uploadComponent.uploadFile(filePath);
 
             //WRONG WAT TO WAIT (HARD CODED WAIT)
            // await page.waitForTimeout(5000);
