@@ -1,7 +1,0 @@
-[ 'Home', 'About', 'Shop', 'Blog', 'Contact', 'My account' ]
-Home
-About
-Shop
-Blog
-Contact
-My account
