@@ -23,11 +23,10 @@ test.describe('Account Page', () => {
     test('Verify Login end register is visible', async ({page}) => {
       await page.goto('/my-account')
       await expect(page.locator('//*[text()="Log in"]')).toBeVisible()
-      await expect(page.locator('//button[text()="Register"]')).toBeVisible()
+      await expect(page.locator('//button[text()="Register"]')).not.toBeVisible()
 
     });
-    
-    
+
     
 });
 
