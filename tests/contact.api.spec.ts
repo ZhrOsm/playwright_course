@@ -20,7 +20,17 @@ test.describe('Contact', () =>{
             const response = await fakerApi.get('users')
             const responseBody = await response.json();
             randomPerson = responseBody[0];
+
+            const postResponse = await fakerApi
+            .post('/users/1/todos',{
+                data:{
+                    "title": "Learn Playwright",
+                    "completed": "false"
+                }
+            })
             
+            const posrResponseBody = await postResponse.json()
+            console.log(posrResponseBody);
 
         })
    
