@@ -1,36 +1,47 @@
 import {test, expect, APIRequestContext, APIResponse} from '@playwright/test';
 import ContactPage from '../pages/contact.page';
 import FormComponent from '../Components/form.component'
-
+import apiController from '../controller/api.controller';
 
 
 test.describe('Contact', () =>{
 
         let contactPage: ContactPage;
         let formComponent: FormComponent;
-        let fakerApi: APIRequestContext;
+       // let fakerApi: APIRequestContext;
         let randomPerson:APIResponse;
 
         test.beforeAll(async ({playwright}) =>{
 
-            fakerApi = await playwright.request.newContext({
-                baseURL: 'https://jsonplaceholder.typicode.com/'
-            });
+            // fakerApi = await playwright.request.newContext({
+            //     baseURL: 'https://jsonplaceholder.typicode.com/'
+            // });
 
-            const response = await fakerApi.get('users')
-            const responseBody = await response.json();
-            randomPerson = responseBody[0];
+            //const response = await fakerApi.get('users')
+            // const responseBody = await response.json();
+            // randomPerson = responseBody[0];
 
-            const postResponse = await fakerApi
-            .post('/users/1/todos',{
-                data:{
-                    "title": "Learn Playwright",
-                    "completed": "false"
-                }
-            })
+            await apiController.init();
+
+            randomPerson = await apiController.getUser();
+
+
             
-            const posrResponseBody = await postResponse.json()
-            console.log(posrResponseBody);
+
+            // const postResponse = await fakerApi
+            // .post('/users/1/todos',{
+            //     data:{
+            //         "title": "Learn Playwright",
+            //         "completed": "false"
+            //     }
+            // })
+            
+            // const postResponseBody = await postResponse.json()
+            // console.log(postResponseBody);
+
+
+            const newUserTodo = await apiController.createUserTodo();
+            console.log(newUserTodo)
 
         })
    
